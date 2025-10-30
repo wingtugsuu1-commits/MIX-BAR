@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halloween AI Mixology Bar</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: #f0f0f0; text-align: center; padding: 2rem; }
+  h1 { color: #ff3c00; }
+  select, button { padding: 0.5rem; margin: 0.5rem; font-size: 1rem; }
+  .cocktail { border: 1px solid #444; padding: 1rem; margin: 1rem auto; width: 90%; max-width: 400px; border-radius: 10px; background: #111; }
+</style>
+</head>
+<body>
+<h1>Halloween AI Mixology</h1>
+<p>Scan, answer, and get your spooky Jägermeister cocktail!</p>
+
+<div id="form-section">
+  <label>Mood:</label>
+  <select id="mood">
+    <option value="Spooky">Spooky</option>
+    <option value="Mysterious">Mysterious</option>
+    <option value="Playful">Playful</option>
+  </select><br>
+
+  <label>Scariest Thing:</label>
+  <select id="scare">
+    <option value="Ghosts">Ghosts</option>
+    <option value="Zombies">Zombies</option>
+    <option value="Darkness">Darkness</option>
+  </select><br>
+
+  <label>Costume:</label>
+  <select id="costume">
+    <option value="Witch">Witch</option>
+    <option value="Vampire">Vampire</option>
+    <option value="Monster">Monster</option>
+  </select><br>
+
+  <button onclick="generateCocktails()">Generate Cocktails</button>
+</div>
+
+<div id="cocktail-section" style="display:none;">
+  <h2>Your Spooky Cocktails</h2>
+  <div id="cocktails"></div>
+  <button onclick="resetForm()">Try Again</button>
+</div>
+
+<script>
+function generateCocktails() {
+  const mood = document.getElementById('mood').value;
+  const scare = document.getElementById('scare').value;
+  const costume = document.getElementById('costume').value;
+
+  // Simulated AI cocktail generator
+  const cocktails = [
+    {
+      name: `${costume}’s Brew`,
+      description: `A ${mood.toLowerCase()} drink inspired by ${scare.toLowerCase()}, featuring Jägermeister and a hint of mystery.`,
+      garnish: 'Dry ice fog'
+    },
+    {
+      name: `The Haunted ${costume}`,
+      description: `Dark and bold, combining Jägermeister with crimson flavors reminiscent of ${scare.toLowerCase()}.`,
+      garnish: 'Blood orange slice'
+    },
+    {
+      name: `${mood} Night`,
+      description: `A playful yet eerie cocktail with Jägermeister, perfect for a night of ${scare.toLowerCase()} surprises.`,
+      garnish: 'Green apple candy'
+    }
+  ];
+
+  const container = document.getElementById('cocktails');
+  container.innerHTML = '';
+  cocktails.forEach(c => {
+    container.innerHTML += `<div class="cocktail">
+      <h3>${c.name}</h3>
+      <p>${c.description}</p>
+      <p><strong>Garnish:</strong> ${c.garnish}</p>
+    </div>`;
+  });
+
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('cocktail-section').style.display = 'block';
+}
+
+function resetForm() {
+  document.getElementById('form-section').style.display = 'block';
+  document.getElementById('cocktail-section').style.display = 'none';
+}
+</script>
+</body>
+</html>
